@@ -25,11 +25,11 @@
 | ------------- | ---------- | ------------------------------ | 
 | name          | string     | null: false                    | 
 | description   | text       | null: false                    | 
-| category      | string     | null: false                    | 
-| status        | string     | null: false                    | 
-| shipping_cost_id | integer     | null: false                    | 
-| shipping_area_id | integer     | null: false                    | 
-| shipping_date_id | integer     | null: false                    | 
+| category_id      | integer     | null: false                    | 
+| status_id        | integer     | null: false                    | 
+| cost_id | integer     | null: false                    | 
+| area_id | integer     | null: false                    | 
+| date_id | integer     | null: false                    | 
 | price         | integer    | null: false                    | 
 | user          | references | null: false, foreign_key: true | 
 
@@ -56,7 +56,7 @@
 | Column   | Type       | Options                        | 
 | -------- | ---------- | ------------------------------ | 
 | zipcode  | string     | null: false                    | 
-| province | string     | null: false                    | 
+| area_id 　| integer     | null: false                    | 
 | city     | string     | null: false                    | 
 | address1 | string     | null: false                    | 
 | address2 | string     | null: false                    | 
