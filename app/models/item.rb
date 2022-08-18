@@ -10,6 +10,7 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :shipdate
 
+  validates :image, presence: true
   validates :name, presence: true
   validates :description, presence: true
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
