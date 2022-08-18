@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :move_to_login, only: [:new]
 
   def index
+    @items = Item.order(created_at: "DESC")
   end
 
   def new
@@ -20,8 +21,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:image, :name, :description, :category_id, :status_id, :cost_id, :area_id, :shipdate_id,
-                                 :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :name, :description, :category_id, :status_id, :cost_id, :area_id, :shipdate_id,:price).merge(user_id: current_user.id)
   end
 
   def move_to_login
