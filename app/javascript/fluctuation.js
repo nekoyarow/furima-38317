@@ -1,13 +1,11 @@
 function fluctuation (){
-  const itemPrice = document.getElementById("item-price");
-  itemPrice.addEventListener("input", (e) => {
-    e.preventDefault();
-    const form = document.getElementById("form");
-    const formData = new FormData(form);
-    const XHR = new XMLHttpRequest();
-    XHR.open("POST", "/items", true);
-    XHR.responseType = "json";
-    XHR.send(formData);
+  const priceInput = document.getElementById("item-price");
+  priceInput.addEventListener("input", () => {
+    const inputValue = priceInput.value;
+    const addTaxDom = document.getElementById("add-tax-price");
+    const profit = document.getElementById("profit");
+    addTaxDom.innerHTML = Math.floor(inputValue * 0.1)
+    profit.innerHTML = Math.floor(inputValue - inputValue * 0.1 )
   });
 };
 
