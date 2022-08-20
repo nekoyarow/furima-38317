@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show, :update, :destory]
-  before_action :authenticate_user!, only: [:new, :edit, :destory]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :move_to_index, only: [:edit]
 
   def index
@@ -34,8 +34,8 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destory
-    @item.destory
+  def destroy
+    @item.destroy
     redirect_to root_path
   end
 
@@ -48,10 +48,6 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def move_to_login
-    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def move_to_index
