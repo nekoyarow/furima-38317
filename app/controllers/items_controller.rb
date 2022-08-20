@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show, :update]
-  before_action :move_to_login, only: [:new, :edit]
-  before_action :move_to_index, only: [:edit]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :move_to_index, only: [:edit, :destroy]
 
   def index
     @items = Item.order(created_at: 'DESC')
@@ -34,6 +34,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
+
   private
 
   def item_params
@@ -45,12 +50,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def move_to_login
-    redirect_to new_user_session_path unless user_signed_in?
-  end
-
   def move_to_index
     redirect_to root_path unless current_user.id == @item.user_id
   end
-
 end
