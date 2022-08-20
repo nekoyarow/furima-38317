@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show, :update]
+  before_action :set_item, only: [:edit, :show, :update, :destory]
   before_action :move_to_login, only: [:new, :edit]
   before_action :move_to_index, only: [:edit]
 
@@ -31,6 +31,13 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item.id)
     else
       render :edit
+    end
+  end
+
+  def destory
+    if user_signed_in?
+      @item.destory
+      redirect_to root_path
     end
   end
 
