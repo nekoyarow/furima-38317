@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show, :update, :destory]
-  before_action :move_to_login, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:new, :edit, :destory]
   before_action :move_to_index, only: [:edit]
 
   def index
@@ -35,10 +35,8 @@ class ItemsController < ApplicationController
   end
 
   def destory
-    if user_signed_in?
-      @item.destory
-      redirect_to root_path
-    end
+    @item.destory
+    redirect_to root_path
   end
 
   private
