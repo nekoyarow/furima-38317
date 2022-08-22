@@ -61,7 +61,7 @@
 | address1 | string     | null: false                    | 
 | address2 | string     | null: false                    | 
 | phone    | string     | null: false                    | 
-| purchase_records  | references | null: false, foreign_key: true | 
+| purchases  | references | null: false, foreign_key: true | 
 
 ### Association
 - belongs_to :purchases
