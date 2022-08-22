@@ -11,5 +11,10 @@ class OrderAddress
     validates :address1
     validates :phone, format: {with: /\A\d{10,11}\z/, message: "is invalid." }
     validates :order_id
+
+    def save
+      order = Order.create(user_id: user_id, item_id: item_id)
+      Address.create(zipcode: zipcode, area_id: area_id, city: city, address1: address1, address2: address2, phone: phone, order_id: order_id)
+    end
   end
 end
