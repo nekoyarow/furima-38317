@@ -23,12 +23,12 @@ RSpec.describe OrderAddress, type: :model do
       it 'zipcodeが空だと保存できない' do
         @order_address.zipcode = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Zipcode can't be blank", "Zipcode is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include("Zipcode can't be blank", 'Zipcode is invalid. Include hyphen(-)')
       end
       it 'zipcodeが半角のハイフンを含んだ正しい形式でないと保存できない' do
         @order_address.zipcode = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Zipcode is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Zipcode is invalid. Include hyphen(-)')
       end
       it 'area_idが1では保存できない' do
         @order_address.area_id = '1'
@@ -53,17 +53,17 @@ RSpec.describe OrderAddress, type: :model do
       it 'phoneが9文字以下では保存できない' do
         @order_address.phone = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is invalid.")
+        expect(@order_address.errors.full_messages).to include('Phone is invalid.')
       end
       it 'phoneが12文字以上では保存できない' do
         @order_address.phone = '090123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is invalid.")
+        expect(@order_address.errors.full_messages).to include('Phone is invalid.')
       end
       it 'phoneが半角数値以外では保存できない' do
         @order_address.phone = '０９０１２３４５６７８'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is invalid.")
+        expect(@order_address.errors.full_messages).to include('Phone is invalid.')
       end
       it 'tokenが空では保存できない' do
         @order_address.token = nil
@@ -74,13 +74,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.user_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("User can't be blank")
-
       end
       it 'itemが紐づいてないと保存できない' do
         @order_address.item_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Item can't be blank")
-
       end
     end
   end
